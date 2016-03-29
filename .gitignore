@@ -1,0 +1,5 @@
+.git
+PA*
+.~lock*
+exe/check
+CMake*
