@@ -1,1 +1,1 @@
-./runTests.sh: line 56: bin/PA6: No such file or directory
+Error: Normalization failed. All Points are uniform.

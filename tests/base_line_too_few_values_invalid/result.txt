@@ -1,1 +1,1 @@
-./runTests.sh: line 56: bin/PA6: No such file or directory
+Error: Can't parse the token number [69]

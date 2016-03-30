@@ -1,7 +1,6 @@
 #!/bin/bash
 
-echo
-clear
+echo ""
 
 #Variables
 EXE=(bin/PA*)
@@ -11,9 +10,6 @@ RESULTCODE=0
 EXPECTEDCODE=0
 LOGRESULT=0
 
-
-# Variables formatting the script color red/green for visibility
-PATH=/bin:/usr/bin:
 
 NONE='\e[0m'
 RED='\e[0;31m';
@@ -51,12 +47,13 @@ do
 		truncate -s 0 $FILENAME/result.txt
 
 		PARAMS=$(cat $FILENAME/parameters.txt)
-		for f in * ; do mv "$f" "$FILENAME/$f" ; done
-		echo Params $PARAMS
-		$EXE $FILENAME/input.txt $FILENAME/input2.txt &> $FILENAME/result.txt
+
+		cd $FILENAME/;
+		../../$EXE $PARAMS &> result.txt
 
 		# result code handling...
 		RESULTCODE=$?														#put result code into a variable.
+		cd ../../;
 		>$FILENAME/result_code.txt 											#clear result
 		echo $RESULTCODE >> $FILENAME/result_code.txt 						#echo result code into file.
 		RESULT=$(cat $FILENAME/result.txt)
@@ -74,7 +71,7 @@ do
 		else
 			if [ -f "$FILENAME/expected.txt" ];
 			then
-				./check $FILENAME/expected.txt $FILENAME/result.txt
+				./$CHECKER $FILENAME/expected.txt $FILENAME/result.txt
 				if [ "$?" != "0" ]
 				then
 					echo ""
